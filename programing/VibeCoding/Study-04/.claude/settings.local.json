@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/hyyyr/project_a/study/programing/VibeCoding/**)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" log --oneline -10)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show 5c4f9b5 --stat)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show fdd79a1 --stat)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" log --all --oneline --name-status)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show HEAD~3:programing/readme.md)",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show HEAD~5:\"Data Structures/README.md\")",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show HEAD~4:\"Data Structures/README.md\")",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show HEAD~2:\"Spring/README.md\")",
+      "Bash(git -C \"C:/Users/hyyyr/project_a/study/programing/VibeCoding/Study-04\" show HEAD~1:\"Cloud/README.md\")"
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header-bar">
+      <h1>My Tasks</h1>
+      <div class="header-controls">
+        <span id="current-date"></span>
+        <button id="theme-btn" title="다크 모드 전환">☀</button>
+        <button id="export-btn" title="JSON으로 내보내기">내보내기</button>
+        <label class="import-label" title="JSON 가져오기">
+          가져오기
+          <input type="file" id="import-input" accept=".json" />
+        </label>
+        <button id="clear-completed-btn">완료 삭제</button>
+      </div>
+    </div>
+
+    <!-- 대시보드 -->
+    <div class="dashboard">
+      <div class="dash-overall">
+        <div class="dash-row">
+          <span id="progress-text">0/0 완료 (0%)</span>
+          <span id="today-count">오늘 추가: 0개</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="dash-categories" id="dash-categories"></div>
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="todo-input" placeholder="할 일을 입력하세요" />
+      <div class="input-meta-row">
+        <select id="category-select">
+          <option value="work">업무</option>
+          <option value="personal">개인</option>
+          <option value="study">공부</option>
+        </select>
+        <input type="date" id="date-input" />
+      </div>
+      <button id="add-btn">추가</button>
+    </div>
+
+    <div class="filter-area">
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="work">업무</button>
+      <button class="filter-btn" data-filter="personal">개인</button>
+      <button class="filter-btn" data-filter="study">공부</button>
+      <select id="sort-select" class="sort-select">
+        <option value="createdDesc">최신순</option>
+        <option value="createdAsc">오래된순</option>
+        <option value="dueDate">마감일순</option>
+        <option value="category">카테고리순</option>
+        <option value="completed">미완료 우선</option>
+      </select>
+    </div>
+
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
