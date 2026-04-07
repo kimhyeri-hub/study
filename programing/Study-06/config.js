@@ -1,0 +1,3 @@
+const CONFIG = {
+  OPENROUTER_API_KEY: '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',
+};

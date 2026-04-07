@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>레시피 추천 — 냉장고 레시피</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <a href="index.html" class="back-link">← 재료 다시 선택</a>
+      <h1>🍳 레시피 추천</h1>
+    </header>
+
+    <main>
+      <!-- 재료 요약 바 -->
+      <section class="ingredient-summary" id="ingredient-summary">
+        <p class="summary-label">인식된 재료</p>
+        <div id="summary-tags" class="summary-tags"></div>
+      </section>
+
+      <!-- 필터 -->
+      <section class="filter-section">
+        <div class="filter-group">
+          <p class="filter-label">⏱ 요리 시간</p>
+          <div class="filter-chips" id="filter-time">
+            <button class="chip" data-value="15">15분 이하</button>
+            <button class="chip" data-value="30">30분 이하</button>
+            <button class="chip active" data-value="">제한 없음</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <p class="filter-label">📊 난이도</p>
+          <div class="filter-chips" id="filter-difficulty">
+            <button class="chip active" data-value="">상관없음</button>
+            <button class="chip" data-value="쉬움">쉬움</button>
+            <button class="chip" data-value="보통">보통</button>
+            <button class="chip" data-value="어려움">어려움</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <p class="filter-label">🍽 요리 종류</p>
+          <div class="filter-chips" id="filter-cuisine">
+            <button class="chip active" data-value="">상관없음</button>
+            <button class="chip" data-value="한식">한식</button>
+            <button class="chip" data-value="양식">양식</button>
+            <button class="chip" data-value="중식">중식</button>
+            <button class="chip" data-value="일식">일식</button>
+          </div>
+        </div>
+      </section>
+
+      <button class="btn btn-primary btn-full" id="btn-generate">
+        <span id="btn-generate-text">레시피 만들기</span>
+        <span id="btn-generate-spinner" class="spinner hidden"></span>
+      </button>
+
+      <div id="error-msg" class="error-msg hidden"></div>
+
+      <!-- 레시피 카드 목록 -->
+      <section id="section-recipes" class="hidden">
+        <h2 class="section-title">추천 레시피</h2>
+        <div id="recipe-list" class="recipe-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 상세 모달 -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-title" class="modal-title"></h2>
+          <p id="modal-meta" class="modal-meta"></p>
+        </div>
+        <button id="modal-close" class="modal-close" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-ingredients" class="modal-ingredients"></div>
+        <div id="modal-steps" class="modal-steps"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-full" id="modal-save">저장하기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 탭 -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-tab" id="nav-home">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">홈</span>
+    </a>
+    <a href="step3.html" class="nav-tab" id="nav-saved">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">내 레시피</span>
+    </a>
+  </nav>
+
+  <script src="config.js"></script>
+  <script src="step2.js"></script>
+</body>
+</html>

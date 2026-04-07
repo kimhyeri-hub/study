@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Step 2 테스트 진입</title>
+  <style>
+    body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f5f7fa; }
+    .box { background: #fff; border-radius: 12px; padding: 32px; max-width: 400px; width: 90%; box-shadow: 0 2px 12px rgba(0,0,0,0.1); text-align: center; }
+    h2 { margin-bottom: 12px; }
+    p  { color: #6b7280; font-size: 0.9rem; margin-bottom: 24px; }
+    button { padding: 12px 24px; background: #4f7aff; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+    button:hover { background: #3a63e8; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 20px; }
+    .tag { background: #eef2ff; color: #4f7aff; border-radius: 999px; padding: 4px 12px; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>🧪 Step 2 테스트</h2>
+    <p>아래 재료를 sessionStorage에 주입하고 step2.html로 이동합니다.</p>
+    <div class="tags" id="tag-list"></div>
+    <button onclick="goToStep2()">Step 2 열기</button>
+  </div>
+  <script>
+    const sample = [
+      { name: "달걀",   quantity: "5개",  status: "신선" },
+      { name: "우유",   quantity: "1팩",  status: "보통" },
+      { name: "양파",   quantity: "2개",  status: "신선" },
+      { name: "당근",   quantity: "1개",  status: "신선" },
+      { name: "버터",   quantity: "약간", status: "보통" },
+      { name: "토마토", quantity: "2개",  status: "신선" },
+      { name: "치즈",   quantity: "1장",  status: "보통" },
+    ];
+
+    document.getElementById('tag-list').innerHTML =
+      sample.map(i => `<span class="tag">${i.name}</span>`).join('');
+
+    function goToStep2() {
+      sessionStorage.setItem('ingredients', JSON.stringify(sample));
+      window.location.href = 'step2.html';
+    }
+  </script>
+</body>
+</html>

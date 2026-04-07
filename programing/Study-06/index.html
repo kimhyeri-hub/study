@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>냉장고 레시피</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>🧊 냉장고 레시피</h1>
+      <p class="subtitle">냉장고 사진을 올리면 재료를 인식해 레시피를 추천해드려요</p>
+    </header>
+
+    <main>
+      <!-- Step 1: 이미지 업로드 -->
+      <section id="section-upload">
+        <div
+          id="drop-zone"
+          class="drop-zone"
+          role="button"
+          tabindex="0"
+          aria-label="이미지 업로드 영역"
+        >
+          <div class="drop-zone-inner" id="drop-zone-placeholder">
+            <span class="drop-icon">📷</span>
+            <p>냉장고 사진을 여기에 드래그하거나</p>
+            <label class="btn btn-outline" for="file-input">파일 선택</label>
+            <input type="file" id="file-input" accept="image/*" hidden />
+          </div>
+          <div class="drop-zone-inner hidden" id="drop-zone-preview">
+            <img id="preview-img" src="" alt="미리보기" />
+            <button class="btn btn-ghost btn-sm" id="btn-reselect">다른 사진 선택</button>
+          </div>
+        </div>
+
+        <div id="error-msg" class="error-msg hidden"></div>
+
+        <button class="btn btn-primary btn-full" id="btn-analyze">
+          <span id="btn-analyze-text">재료 찾기</span>
+          <span id="btn-analyze-spinner" class="spinner hidden"></span>
+        </button>
+      </section>
+
+      <!-- Step 1: 재료 결과 -->
+      <section id="section-result" class="hidden">
+        <h2 class="section-title">인식된 재료</h2>
+
+        <p id="ingredient-count" class="ingredient-count"></p>
+        <div id="ingredient-tags" class="ingredient-tags"></div>
+
+        <div class="add-ingredient-row">
+          <input
+            type="text"
+            id="input-add-ingredient"
+            class="input-text"
+            placeholder="재료 직접 추가"
+            maxlength="20"
+          />
+          <button class="btn btn-outline btn-sm" id="btn-add-ingredient">추가</button>
+        </div>
+
+        <button class="btn btn-primary btn-full" id="btn-next">
+          레시피 추천받기 →
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <!-- 하단 탭 -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-tab active" id="nav-home">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">홈</span>
+    </a>
+    <a href="step3.html" class="nav-tab" id="nav-saved">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">내 레시피</span>
+    </a>
+  </nav>
+
+  <script src="config.js"></script>
+  <script src="step1.js"></script>
+  <script>
+    // 프로필 없으면 step3.html(설정 화면)으로 이동
+    if (!localStorage.getItem('fridge_user_profile')) {
+      window.location.href = 'step3.html';
+    }
+  </script>
+</body>
+</html>

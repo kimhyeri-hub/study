@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>내 레시피 — 냉장고 레시피</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- 프로필 설정 화면 -->
+    <section id="section-profile-setup" class="hidden">
+      <header class="app-header">
+        <h1>👤 프로필 설정</h1>
+        <p class="subtitle">처음 한 번만 설정하면 레시피 추천이 더 정확해져요</p>
+      </header>
+
+      <div class="profile-form">
+        <div class="form-group">
+          <label class="form-label" for="input-nickname">닉네임</label>
+          <input type="text" id="input-nickname" class="input-text" placeholder="이름을 입력해주세요" maxlength="16" />
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">식이 제한 <span class="form-hint">(해당하는 것 모두 선택)</span></p>
+          <div class="multi-chips" id="chips-diet">
+            <button class="chip" data-value="채식">채식</button>
+            <button class="chip" data-value="비건">비건</button>
+            <button class="chip" data-value="글루텐 프리">글루텐 프리</button>
+            <button class="chip" data-value="유제품 제한">유제품 제한</button>
+            <button class="chip" data-value="없음">없음</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="form-label">선호 요리 종류 <span class="form-hint">(해당하는 것 모두 선택)</span></p>
+          <div class="multi-chips" id="chips-cuisine">
+            <button class="chip" data-value="한식">한식</button>
+            <button class="chip" data-value="양식">양식</button>
+            <button class="chip" data-value="중식">중식</button>
+            <button class="chip" data-value="일식">일식</button>
+          </div>
+        </div>
+
+        <div id="profile-error" class="error-msg hidden"></div>
+        <button class="btn btn-primary btn-full" id="btn-save-profile">저장하고 시작하기</button>
+      </div>
+    </section>
+
+    <!-- 저장된 레시피 목록 화면 -->
+    <section id="section-saved" class="hidden">
+      <header class="app-header" style="margin-bottom:16px">
+        <h1>📚 내 레시피</h1>
+      </header>
+
+      <!-- 프로필 카드 -->
+      <div class="profile-card" id="profile-card">
+        <div class="profile-card-info">
+          <span class="profile-avatar">👤</span>
+          <div>
+            <p class="profile-nickname" id="profile-nickname"></p>
+            <p class="profile-stats" id="profile-stats"></p>
+          </div>
+        </div>
+        <div id="profile-badges" class="profile-badges"></div>
+        <button class="btn btn-ghost btn-sm" id="btn-edit-profile">수정</button>
+      </div>
+
+      <!-- 빈 상태 -->
+      <div id="empty-state" class="empty-state hidden">
+        <p class="empty-icon">🍽</p>
+        <p class="empty-msg">저장된 레시피가 없어요.</p>
+        <p class="empty-sub">냉장고를 분석해서 레시피를 저장해보세요!</p>
+        <a href="index.html" class="btn btn-primary" style="margin-top:16px">냉장고 분석하러 가기</a>
+      </div>
+
+      <!-- 레시피 목록 -->
+      <div id="saved-recipe-list" class="saved-recipe-list"></div>
+    </section>
+
+  </div>
+
+  <!-- 하단 탭 -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-tab" id="nav-home">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">홈</span>
+    </a>
+    <a href="step3.html" class="nav-tab active" id="nav-saved">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">내 레시피</span>
+    </a>
+  </nav>
+
+  <!-- 상세 모달 (Step 2와 동일 구조) -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-title" class="modal-title"></h2>
+          <p id="modal-meta" class="modal-meta"></p>
+        </div>
+        <button id="modal-close" class="modal-close" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-ingredients"></div>
+        <div id="modal-steps"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="step3.js"></script>
+</body>
+</html>

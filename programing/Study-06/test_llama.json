@@ -1,0 +1,13 @@
+{
+  "model": "meta-llama/llama-3.3-70b-instruct:free",
+  "messages": [
+    {
+      "role": "system",
+      "content": "당신은 요리 전문가입니다. 반드시 JSON 형식으로만 응답하세요. 다른 텍스트는 포함하지 마세요."
+    },
+    {
+      "role": "user",
+      "content": "보유 재료: 달걀, 우유, 양파\n조건: 요리 시간 제한 없음, 난이도 상관없음, 요리 종류 상관없음\n\n다음 JSON 형식으로 레시피 3개를 추천해줘. 다른 텍스트 없이 JSON만 출력해:\n[{\"name\":\"요리명\",\"time\":15,\"difficulty\":\"쉬움\",\"available_ingredients\":[],\"missing_ingredients\":[],\"description\":\"한 줄 소개\",\"steps\":[]}]"
+    }
+  ]
+}
