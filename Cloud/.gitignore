@@ -1,0 +1,4 @@
+*.yaml
+!secrets.yaml #yaml파일에서 secrets만 예외처리 
+*.log
+/test/log/
