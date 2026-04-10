@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="https://logging.apache.org/xml/ns"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance"
+	xsi:schemaLocation="https://logging.apache.org/xml/ns
+https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+	<Appenders>
+		<Console name="console">
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{-10}:%L - %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="INFO" additivity="false">
+			<AppenderRef ref="console" />
+		</Root>
+		<Logger name="com.springmvc" level="DEBUG" />
+		<Logger name="org.springframework.core" level="INFO" />
+		<Logger name="org.springframework.beans" level="INFO" />
+		<Logger name="org.springframework.context" level="INFO" />
+		<Logger name="org.springframework.web" level="DEBUG" />
+		<Logger name="org.springframework.security" level="DEBUG" />
+		<Logger name="org.springframework.jdbc" level="DEBUG" />
+	</Loggers>
+</Configuration>
