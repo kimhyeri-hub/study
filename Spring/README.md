@@ -27,3 +27,73 @@
 | 모델&뷰 | 컨트롤러가 처리한 결과 정보 및 뷰 선택에 필요한 정보를 담는 객체            |
 | 뷰 리졸버 | 컨트롤러의 처리 결과를 사용자에게 보여줄 뷰를 결정            |
 | 뷰 | 커느롤러의 처리 결과 화면을 생성. JSP를 비롯한 다양한 뷰 템플릿 엔진이 사용됨. 클라이언트에 요청 처리 결과를 전송             |
+
+# Spring JDBC 정리
+## 1. Spring JDBC의 이해
+- **JDBC (Java Database Connectivity)**
+자바에서 데이터베이스에 접속할 수 있도록 하는 표준 API
+- **Spring JDBC**
+JDBC의 복잡한 절차(커넥션 연결/종료, 예외 처리 등)를 추상화하여
+개발자가 SQL 정의 및 결과 매핑에만 집중할 수 있게 돕는 스프링 모듈
+- **핵심 도구 (JdbcTemplate)** 
+모든 JDBC 작업을 지원하는 핵심 클래스
+반복적인 코드를 제거하고 데이터베이스 연동을 단순화
+
+## 2. 환경 설정 파일의 유기적 역할 (Flow)
+
+전체 설정은 **root-context.xml**을 중심으로 유기적으로 연결됨
+
+|  구성 요소  |              설명            | 
+|:-------|:---------------------------: |
+|디스패처 서블릿 (DispatcherServlet) | 클라이언트 요청을 가장 먼저 받는 프론트 컨트롤러 -> 적절한 컨트|롤러로 요청 전달 -> 처리 결과를 다시 받아 뷰로 전달 -> 최종 응답 생성|
+|핸들러 매핑 (HandlerMapping) | 클라이언트 요청 URL을 기반으로 어떤 컨트롤러가 처리할지 결정|
+|핸들러 어댑터 (HandlerAdapter) | 핸들러 매핑을 통해 선택된 컨트롤러를 실제로 호출|
+|컨트롤러 (Controller) | 요청을 처리하고 비즈니스 로직 수행 -> 결과 데이터를 모델에 담아 반환|
+|모델 & 뷰 (ModelAndView) | 컨트롤러의 처리 결과 데이터(Model)와 뷰 이름(View)을 함께 담는 객체|
+|뷰 리졸버 (ViewResolver) | 컨트롤러가 반환한 뷰 이름을 실제 뷰(JSP 등)로 변환|
+|뷰 (View) | 모델 데이터를 기반으로 화면 생성 -> 최종적으로 클라이언트에게 응답 전달|
+
+## 3. 데이터베이스 초기화 과정
+- **DataSource 생성**
+DriverManagerDataSource 클래스를 통해 DB 연결 객체 생성
+- **테이블 생성**
+create-db.sql 스크립트를 실행하여 book 테이블 자동 생성
+- **데이터 삽입**
+insert-data.sql 스크립트를 통해 초기 도서 데이터 삽입
+
+## 4. 데이터 조회 핵심 기술
+① **RowMapper 인터페이스**
+- 역할:
+데이터베이스의 각 행(ResultSet)을 자바 객체(Domain Object)로 매핑하는 역할
+- 구현 **(BookRowMapper)**
+mapRow 메서드를 오버라이딩하여
+rs.getString("b_bookId") 등의 값을 객체 필드에 저장
+----------
+② **JdbcTemplate 사용 (Repository)**
+- 리포지토리 클래스에서 @Autowired로 JdbcTemplate 주입
+
+- 사용 예시
+template.query(sql, new BookRowMapper());
+
+- SQL 실행 후 결과 리스트를 한 번에 반환
+  
+## 5. 애플리케이션 계층 구조 (Layered Architecture)
+
+효율적인 유지보수를 위해 관심사에 따라 계층 분리
+
+- **프레젠테이션 계층**
+Controller (BookController), View (books.jsp)
+- **서비스 계층**
+비즈니스 로직 처리 (BookServiceImpl)
+- **퍼시스턴스 계층**
+데이터 액세스 담당 (BookRepositoryImpl)
+- **도메인 객체**
+계층 간 데이터 교환을 위한 모델 (Book.java)
+
+## 6. 로깅 (Logging) 시스템
+- **로깅 레벨 순서**
+TRACE < DEBUG < INFO < WARN < ERROR < FATAL
+- **Slf4j**
+다양한 로깅 프레임워크를 통합해서 사용할 수 있게 해주는 추상화 API
+- **설정 방법**
+log4j2.xml을 통해 패키지별 로그 출력 수준 설정
