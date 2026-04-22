@@ -1,0 +1,34 @@
+[1주차] Spring Framework 기초
+Spring Framework 개념 및 특징
+개념: 자바 플랫폼을 위한 오픈 소스 애플리케이션 프레임워크로, 특히 데이터 액세스(JDBC) 추상화와 같은 다양한 모듈을 제공하여 개발을 단순화합니다
+.
+특징: 소스 자료에서는 Bean(객체) 관리 기능을 보여주며, root-context.xml이나 servlet-context.xml을 통해 객체 간의 의존 관계를 설정하고 관리하는 모습을 확인할 수 있습니다
+.
+Spring 모듈
+Spring JDBC: JDBC 추상화 계층을 제공하여 데이터베이스 공급업체별 오류 코드를 분석하고 코드를 단순화하는 모듈입니다
+.
+Spring Web MVC: 웹 애플리케이션 개발을 위한 모델-뷰-컨트롤러 기반의 모듈입니다
+.
+※ 참고 (소스 외 정보): 1주차의 JAVA 특성 중 오라클 분쟁 및 라이선스 문제는 Google과 Oracle 간의 Java API 사용에 관한 법적 공방을 의미하며, namespace 문제는 Java EE가 Jakarta EE로 전환되면서 패키지명이 javax.*에서 jakarta.*로 변경된 이슈를 말합니다. 이 내용은 제공된 PDF 소스에는 명시되어 있지 않습니다.
+
+--------------------------------------------------------------------------------
+[2주차] Spring Web MVC 구조 및 설정
+스프링 웹 MVC 기본 구성요소 및 특징
+컨트롤러(Controller): 브라우저의 요청을 처리하는 자바 클래스로, @Controller 어노테이션을 사용하여 선언합니다.
+뷰(View): 요청 처리 결과를 출력하는 JSP 페이지입니다. 이번 과정에서는 JSTL(Java Server Pages Standard Tag Library)을 적용하여 표현합니다.
+모델(Model): JSP 웹 페이지에 출력할 데이터 형식을 정의합니다.
+스프링 웹 MVC 프로젝트 구조 및 실행 과정
+구조: 전체 애플리케이션을 관심사에 따라 **프레젠테이션 계층(Controller, View), 서비스 계층(Service), 퍼시스턴스 계층(Repository), 도메인 객체(Book.java)**로 분리한 계층적 구조를 가집니다
+.
+실행 과정
+: 브라우저 호출 → BookController (요청 처리) → BookServiceImpl (비즈니스 로직) → BookRepositoryImpl (데이터 접근) → JdbcTemplate.query (DB 실행) 순으로 동작합니다.
+Spring MVC 환경 설정 파일 및 역할
+web.xml: 서버 설정 파일로, H2Console 서블릿 등을 등록하여 외부 접속 통로를 관리합니다.
+root-context.xml: 애플리케이션 전체에서 공유되는 자원 설정 공간입니다. db.properties 로드, DataSource 생성, 데이터베이스 초기화(SQL 스크립트 실행)를 담당합니다.
+servlet-context.xml: 웹 관련 설정을 담당하며, 리포지토리에서 SQL을 실행할 때 사용하는 jdbcTemplate 등을 설정합니다.
+정적 리소스 및 뷰 매핑 설정
+정적 리소스: 부트스트랩 CSS와 같은 파일은 src/main/webapp/resources 경로에 저장하여 사용합니다
+.
+뷰 매핑: 컨트롤러에서 @RequestMapping 어노테이션의 value 속성으로 URL 주소를 매핑하고, 메서드에서 반환하는 문자열(예: "welcome", "books")이 실제 JSP 파일명과 매칭됩니다
+.
+※ 참고 (소스 외 정보): Maven의 Scope(compile, runtime, provided, test 등)는 종속성이 빌드 및 실행의 어느 단계에서 포함될지 결정하는 설정이나, 제공된 소스에서는 <dependency> 태그의 기본 사용법 위주로 설명되어 있습니다
