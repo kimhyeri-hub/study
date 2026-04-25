@@ -43,3 +43,4 @@
 *   **Allow vs Deny**: 명시적인 **거부(Deny)**는 모든 허용(Allow)보다 우선하여 적용됩니다.
 *   **IP 제어**: `Condition` 절의 `IpAddress`와 `aws:SourceIp`를 사용하여 특정 IP 대역만 접근을 허용하거나 차단할 수 있습니다.
 
+** 기말고사 실습 = 대비 제대로 **
