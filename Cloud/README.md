@@ -1,4 +1,4 @@
-### **1. Amazon EC2 (Elastic Compute Cloud) 핵심**
+### **1. Amazon EC2 (Elastic Compute Cloud) 핵심**............
 *   **개념**: AWS에서 제공하는 개별 가상 서버(인스턴스) 서비스입니다.
 *   **인스턴스 상태**: 
     *   **Running**: 실행 중.
